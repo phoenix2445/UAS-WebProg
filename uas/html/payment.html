@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News and Shop - Payment</title>
+    <link rel="stylesheet" href="../css/payment.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const productId = params.get('id');
+            const productName = params.get('name');
+            const productPrice = params.get('price');
+
+            document.getElementById('product-name').textContent = productName;
+            document.getElementById('product-price').textContent = `Rp${productPrice}`;
+            document.getElementById('product-id').value = productId;
+            document.getElementById('amount').value = productPrice;
+        });
+    </script>
+</head>
+<body>
+    <header>
+    <div class="container">
+        <nav>
+            <a href="#" class="logo">ELECTRONIX</a>
+            <ul>
+                <li><a href="../index.html">News</a></li>
+                <li><a href="/uas/html/shop.html">Shop</a></li>
+                <li><a href="/uas/html/contact.php">Contact</a></li>
+                <li><a href="/uas/html/about.html">About Us</a></li>
+            </ul>
+        </nav>
+    </div>
+    </header>
+    <main>
+        <div class="page">
+        <h1>Payment Page</h1>
+        <h2 id="product-name"></h2>
+        <p id="product-price"></p>
+        </div>
+        <form action="process_payment.php" method="POST">
+            <input type="hidden" id="product-id" name="product_id">
+            <label for="amount">Amount:</label>
+            <input type="text" id="amount" name="amount" readonly>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="payment_method">Payment Method:</label>
+            <select id="payment_method" name="payment_method" required>
+                <option value="Credit Card">Credit Card</option>
+                <option value="PayPal">PayPal</option>
+                <option value="Bank Transfer">Bank Transfer</option>
+                <option value="Gopay">Gopay</option>
+            </select>
+            <button type="submit">Pay Now</button>
+        </form>
+    </main>
+</body>
+</html>
